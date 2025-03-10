@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Create a new event
 router.post("/user", async (req, res) => {
-  const { userName, role, attributes } = req.body;
+  const { userName, role, attributes , specialization ,description} = req.body;
 
   if(attributes?.sub === undefined) {
     res.status(400).json({ message: "User not authenticated" });
@@ -36,7 +36,8 @@ router.post("/user", async (req, res) => {
         family_name: attributes?.family_name,
         given_name: attributes?.given_name,
         cognito_id: attributes?.sub,
-        
+        specialization: specialization,
+        description: description
        }
     );
     await newUser.save();

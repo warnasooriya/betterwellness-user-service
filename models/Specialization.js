@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const SpecialtySchema = new mongoose.Schema(
+const SpecializationSchema = new mongoose.Schema(
   {
     Area: {
       type: String,
@@ -14,6 +14,6 @@ const SpecialtySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Specialty = mongoose.model("SpecialtyArea", SpecialtySchema);
+const Specialization = mongoose.model("Specialization", SpecializationSchema);
 
-module.exports = Specialty;
+module.exports = Specialization;

@@ -27,10 +27,13 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    specialty: {
+    specialization: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'SpecialtyArea'
+      ref: 'Specialization'
     },
+    description: {
+      type: String,
+    }
   },
   { timestamps: true }
 );
