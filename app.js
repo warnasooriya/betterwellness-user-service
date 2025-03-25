@@ -8,9 +8,16 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 // Middleware
+const requestLogger = require('./middleware/requestLogger');
+const errorLogger = require('./middleware/errorLogger');
+
 
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
+
+
+app.use(express.json());
+app.use(requestLogger);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
@@ -23,6 +30,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Routes
 const userRoutes = require("./routes/userRoutes");
 app.use("/api", userRoutes);
+
+app.use(errorLogger);
+
 
 // Start server
 app.listen(port, "0.0.0.0", () => {
