@@ -12,7 +12,8 @@ const requestLogger = require('./middleware/requestLogger');
 const errorLogger = require('./middleware/errorLogger');
 
 
-app.use(cors(corsOptions))
+app.use(cors());
+app.options('*', cors()); // Handle preflight requests
 app.use(bodyParser.json());
 
 
@@ -29,7 +30,15 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Routes
 const userRoutes = require("./routes/userRoutes");
-app.use("/api", userRoutes);
+app.use("/user", userRoutes);
+
+app.get('/user/health', (req, res) => {
+  res.json({ status: 'ok', traceId: req.traceId });
+});
+
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', traceId: req.traceId });
+});
 
 app.use(errorLogger);
 
@@ -38,3 +47,4 @@ app.use(errorLogger);
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running on port ${port}`);
 });
+` `
