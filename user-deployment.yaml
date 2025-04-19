@@ -20,7 +20,7 @@ spec:
           ports:
             - containerPort: 5001
           envFrom:
-            - configMapRef:
+            - secretRef:
                 name: betterwellness-config
           resources:
             limits:
