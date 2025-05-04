@@ -16,7 +16,7 @@ spec:
         - name: regcred
       containers:
         - name: betterwellness-user
-          image: 529088268162.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/user-service:latest
+          image: 565106043125.dkr.ecr.ap-southeast-1.amazonaws.com/betterwellness/user-service:latest
           ports:
             - containerPort: 5001
           envFrom:
